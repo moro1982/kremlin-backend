@@ -48,7 +48,7 @@ public class GameMapper {
         dto.setStartedAt(entity.getStartedAt());
         dto.setCurrentTurn(entity.getCurrentTurn());
         Integer entityPhase = entity.getCurrentPhase();
-        if (entityPhase != null && entityPhase != 0) {
+        if (entityPhase != null) {
             dto.setCurrentPhase(PhaseType.fromOrder(entity.getCurrentPhase()));
         } else {
             dto.setCurrentPhase(null);

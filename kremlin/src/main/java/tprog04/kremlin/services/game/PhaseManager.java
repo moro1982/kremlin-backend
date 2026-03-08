@@ -329,6 +329,8 @@ public class PhaseManager {
             case PARADE:
                 System.out.println("Executing Parade phase.\n");
                 break;
+            default:
+                break;
         }
     }
 
@@ -360,6 +362,8 @@ public class PhaseManager {
                 break;
             case PARADE:
                 System.out.println("Executing Parade phase.\n");
+                break;
+            default:
                 break;
         }
     }

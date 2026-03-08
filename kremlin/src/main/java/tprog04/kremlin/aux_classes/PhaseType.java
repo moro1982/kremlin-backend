@@ -1,6 +1,7 @@
 package tprog04.kremlin.aux_classes;
 
 public enum PhaseType {
+    NONE(0),
     CURES(1),
     PURGE(2),
     SPY_INVESTIGATION(3),

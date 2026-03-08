@@ -187,7 +187,7 @@ public class GameService {
         // Close Lobby
         game.setStartedAt(LocalDateTime.now());
         game.setCurrentTurn(0);
-        game.setCurrentPhase(null);
+        game.setCurrentPhase(0);
         game.setStatus(GameStatus.CLOSED);
         this.clearReadyPlayers(gameID);
 
