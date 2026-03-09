@@ -33,9 +33,9 @@ public class SecurityConfig {
         
         http
             .csrf(csrf -> csrf.disable())
-            .cors(cors -> cors.configurationSource(corsConfigurationSource()))   // habilitamos cors con el bean de abajo
+            .cors(cors -> cors.configurationSource(corsConfigurationSource()))   // enable cors with the bean below
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/auth/**").permitAll()    // login y register públicos
+                .requestMatchers("/auth/**").permitAll()                        // login and register (public)
                 .requestMatchers("/notifications/handshake").authenticated()
                 .requestMatchers("/notifications/game/**").permitAll()
                 .anyRequest().authenticated()
