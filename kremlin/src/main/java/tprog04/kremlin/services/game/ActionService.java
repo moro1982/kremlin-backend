@@ -336,17 +336,17 @@ public class ActionService {
 
     /* Cancel action */
     @Transactional
-    public ActionInstanceDTO cancelAction(ActionInstanceDTO dto) {
+    public ActionInstanceDTO cancelAction(Long gameID, Long actionID) {
 
         // Get current User from Security Context
         User user = this.validationService.getCurrentUser();
         // Get Game by DTO's game ID
-        Game game = this.validationService.validateGameByID(dto.getGameID());
+        Game game = this.validationService.validateGameByID(gameID);
         // Get valid Player for this User and Game
         Player actor = this.validationService.getPlayerByUserAndGame(user, game);
 
         // Find ActionInstance by ID
-        ActionInstance action = this.repoAction.findById(dto.getId())
+        ActionInstance action = this.repoAction.findById(actionID)
                                                .orElseThrow(
                                                   () -> new RuntimeException(
                                                     "Action Not Found.\n"

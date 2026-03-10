@@ -28,10 +28,13 @@ public class ActionController {
     }
 
     // Cancelar una acción (cambia su ActionStatus a CANCELLED)
-    @PostMapping("/cancel")
-    public ResponseEntity<?> cancelAction( @RequestBody ActionInstanceDTO dto )
+    @PostMapping("/cancel/{gameID}/{actionID}")
+    public ResponseEntity<?> cancelAction(
+        @PathVariable("gameID") Long gameID,
+        @PathVariable("actionID") Long actionID
+    )
     {
-        ActionInstanceDTO cancelled = this.actionService.cancelAction(dto);
+        ActionInstanceDTO cancelled = this.actionService.cancelAction(gameID, actionID);
         return ResponseEntity.ok(cancelled);
     }
 

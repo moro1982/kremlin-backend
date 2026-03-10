@@ -178,7 +178,7 @@ public class ValidationService {
                     );
                 if (!playerControlsRelevantPolitico) {
                     throw new IllegalStateException(
-                        "Player must assign exactly 10 influences."
+                        "Player must control the target Politico."
                     );
                 }
                 break;
