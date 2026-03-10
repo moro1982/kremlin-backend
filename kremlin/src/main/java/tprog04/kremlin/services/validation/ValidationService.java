@@ -19,6 +19,7 @@ import tprog04.kremlin.models.User;
 import tprog04.kremlin.repositories.GameRepository;
 import tprog04.kremlin.repositories.PlayerRepository;
 import tprog04.kremlin.repositories.UserRepository;
+import tprog04.kremlin.services.ControlPoliticoService;
 
 @Component
 public class ValidationService {
@@ -29,6 +30,8 @@ public class ValidationService {
     private GameRepository repoGame;
     @Autowired
     private PlayerRepository repoPlayer;
+    @Autowired
+    private ControlPoliticoService controlService;
 
     // Validate if Game exists
     public Game validateGameByID(Long gameID) {
@@ -162,4 +165,27 @@ public class ValidationService {
         }
     }
 
+    // Validate if Player controls Politico involved in an Action (acting, target, etc.)
+    public void validatePlayerControlsPoliticoInAction(Player player, ActionInstance action) {
+        
+        boolean playerControlsRelevantPolitico;
+        
+        switch (action.getType()) {
+            case SEND_HOSPITAL:
+                playerControlsRelevantPolitico = 
+                    this.controlService.playerControlsPolitico(
+                        player, action.getTargetGamePolitico()
+                    );
+                if (!playerControlsRelevantPolitico) {
+                    throw new IllegalStateException(
+                        "Player must assign exactly 10 influences."
+                    );
+                }
+                break;
+            case EXIT_HOSPITAL:
+                break;
+            default:
+                break;
+        }
+    }
 }

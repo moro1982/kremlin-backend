@@ -354,7 +354,12 @@ public class ActionService {
                                                );
         
         // Validate if ActionInstance was announced by Player
-        this.validationService.validateActionOwner(action, actor);
+        // this.validationService.validateActionOwner(action, actor);
+        /* ( WRONG!! Must control Politico involved in action (acting, target, etc.) */
+        
+        // Validate if cancelling Player controls Politico involved in action
+        this.validationService.validatePlayerControlsPoliticoInAction(actor, action);
+        
         // Check if it's ANNOUNCED before cancelling
         this.validationService.validateActionIsAnnounced(action);
 
