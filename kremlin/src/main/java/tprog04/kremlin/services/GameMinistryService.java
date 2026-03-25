@@ -12,7 +12,7 @@ import tprog04.kremlin.aux_classes.GamePoliticoStatus;
 import tprog04.kremlin.aux_classes.MinistryEnum;
 import tprog04.kremlin.dto.gameMinistry.GameMinistryRequestDTO;
 import tprog04.kremlin.dto.gameMinistry.GameMinistryResponseDTO;
-import tprog04.kremlin.models.ActionInstance;
+// import tprog04.kremlin.models.ActionInstance;
 import tprog04.kremlin.models.Game;
 import tprog04.kremlin.models.GameMinistry;
 import tprog04.kremlin.models.GamePolitico;
@@ -254,11 +254,11 @@ public class GameMinistryService {
 
     }
  
-    public List<MinistryEnum> resolveAuthorizedMinistryForActionType( ActionInstance action ) {
-        Game game = action.getGame();
-        ActionType actionType = action.getType();
+    public List<MinistryEnum> resolveAuthorizedMinistryForActionType( ActionType type, Game game ) {
+        // Game game = action.getGame();
+        // ActionType actionType = action.getType();
         List<MinistryEnum> allowedMinistryEnum = new ArrayList<>();
-        switch (actionType) {
+        switch (type) {
             case PURGE_ATTEMPT:
                 MinistryEnum purgeMinistry = 
                     this.loopPossibleMinistries(game, PURGE_MINISTRIES);

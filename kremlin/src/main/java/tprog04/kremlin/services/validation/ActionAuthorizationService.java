@@ -236,7 +236,7 @@ public class ActionAuthorizationService {
         GameMinistry actingMinistry = actingGamePolitico.getGameMinistry();
         MinistryEnum actingMinistryName = actingMinistry.getMinistry().getName();
         MinistryEnum currentAuthorized = 
-            this.gameMinService.resolveAuthorizedMinistryForActionType(action)
+            this.gameMinService.resolveAuthorizedMinistryForActionType(action.getType(), game)
                                     .get(0);
         if (!actingMinistryName.equals(currentAuthorized)) {
             throw new IllegalStateException(
@@ -422,7 +422,7 @@ public class ActionAuthorizationService {
         GameMinistry actingMinistry = actingGamePolitico.getGameMinistry();
         MinistryEnum actingMinistryName = actingMinistry.getMinistry().getName();
         MinistryEnum currentAuthorized = 
-            this.gameMinService.resolveAuthorizedMinistryForActionType(action)
+            this.gameMinService.resolveAuthorizedMinistryForActionType(action.getType(), game)
                                     .get(0);
         /* DEBUG */
         System.out.println("Authorized Ministry for " + action.getType().name() + ": " +
@@ -517,7 +517,7 @@ public class ActionAuthorizationService {
         GameMinistry actingMinistry = actingGamePolitico.getGameMinistry();
         MinistryEnum actingMinistryName = actingMinistry.getMinistry().getName();
         MinistryEnum currentAuthorized = 
-            this.gameMinService.resolveAuthorizedMinistryForActionType(action)
+            this.gameMinService.resolveAuthorizedMinistryForActionType(action.getType(), game)
                                     .get(0);
         /* DEBUG */
         System.out.println("Authorized Ministry for " + action.getType().name() + ": " +
@@ -589,7 +589,7 @@ public class ActionAuthorizationService {
         GameMinistry actingMinistry = actingGamePolitico.getGameMinistry();
         MinistryEnum actingMinistryName = actingMinistry.getMinistry().getName();
         MinistryEnum currentAuthorized = 
-            this.gameMinService.resolveAuthorizedMinistryForActionType(action)
+            this.gameMinService.resolveAuthorizedMinistryForActionType(action.getType(), game)
                                     .get(0);
         /* DEBUG */
         System.out.println("Authorized Ministry for " + action.getType().name() + ": " +
@@ -661,7 +661,7 @@ public class ActionAuthorizationService {
         GameMinistry actingMinistry = actingGamePolitico.getGameMinistry();
         MinistryEnum actingMinistryName = actingMinistry.getMinistry().getName();
         List<MinistryEnum> currentAuthorized = 
-            this.gameMinService.resolveAuthorizedMinistryForActionType(action);
+            this.gameMinService.resolveAuthorizedMinistryForActionType(action.getType(), game);
         /* DEBUG */
         for (MinistryEnum ministry : currentAuthorized) {
             System.out.println("Authorized Ministries for " + action.getType().name() + ": " +
@@ -736,7 +736,7 @@ public class ActionAuthorizationService {
         GameMinistry actingMinistry = actingGamePolitico.getGameMinistry();
         MinistryEnum actingMinistryName = actingMinistry.getMinistry().getName();
         MinistryEnum currentAuthorized = 
-            this.gameMinService.resolveAuthorizedMinistryForActionType(action)
+            this.gameMinService.resolveAuthorizedMinistryForActionType(action.getType(), game)
                                     .get(0);
         /* DEBUG */
         System.out.println("Authorized Ministry for " + action.getType().name() + ": " +

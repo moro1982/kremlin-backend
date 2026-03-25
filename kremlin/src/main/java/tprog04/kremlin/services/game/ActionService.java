@@ -3,6 +3,7 @@ package tprog04.kremlin.services.game;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -14,6 +15,7 @@ import tprog04.kremlin.aux_classes.ActionBlockingStatus;
 import tprog04.kremlin.aux_classes.ActionStatus;
 import tprog04.kremlin.aux_classes.ActionType;
 import tprog04.kremlin.aux_classes.GamePoliticoStatus;
+import tprog04.kremlin.aux_classes.MinistryEnum;
 import tprog04.kremlin.aux_classes.PhaseType;
 import tprog04.kremlin.aux_classes.SseEventType;
 import tprog04.kremlin.aux_classes.TrialStatus;
@@ -1164,4 +1166,18 @@ public class ActionService {
         return ActionType.fromOrder(phaseType.getOrder());
     }
 
+    // Get authorized minister by ActionType
+    public Map<ActionType, MinistryEnum> getAuthorizedMinistry(Game game) {
+        Map<ActionType, MinistryEnum> authorizedMinistry = new HashMap<>();
+        switch ( PhaseType.fromOrder(game.getCurrentPhase()) ){
+            case PURGE:
+                MinistryEnum ministry =
+                    this.gameMinService.resolveAuthorizedMinistryForActionType(
+                        ActionType.PURGE_ATTEMPT, game).get(0);
+                authorizedMinistry.put(ActionType.PURGE_ATTEMPT, ministry);
+                return authorizedMinistry;
+            default:
+                return null;
+        }
+    }
 }

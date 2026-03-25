@@ -1,13 +1,16 @@
 package tprog04.kremlin.dto.game;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import lombok.Data;
 import tprog04.kremlin.aux_classes.ActionBlockingStatus;
 import tprog04.kremlin.aux_classes.ActionType;
 import tprog04.kremlin.aux_classes.GameLifeCycleStatus;
+import tprog04.kremlin.aux_classes.MinistryEnum;
 import tprog04.kremlin.aux_classes.PhaseExecutionStatus;
 import tprog04.kremlin.aux_classes.PhaseType;
 import tprog04.kremlin.dto.actionInstance.ActionInstanceDTO;
@@ -39,6 +42,7 @@ public class GameResponseDTO {
     private ActionInstanceDTO awaitingAction;
     private List<ActionInstanceDTO> announcedActions;
     private Set<ActionType> possibleActionsByPhase = new HashSet<>();
+    private Map<ActionType, MinistryEnum> authorizedMinistry = new HashMap<>();
 
     private TrialResponseDTO trial;
 
