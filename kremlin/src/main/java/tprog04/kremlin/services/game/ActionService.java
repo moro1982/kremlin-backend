@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -1167,15 +1168,18 @@ public class ActionService {
     }
 
     // Get authorized minister by ActionType
-    public Map<ActionType, MinistryEnum> getAuthorizedMinistry(Game game) {
-        Map<ActionType, MinistryEnum> authorizedMinistry = new HashMap<>();
-        switch ( PhaseType.fromOrder(game.getCurrentPhase()) ){
+    public Map<MinistryEnum, Set<ActionType>> getAuthorizedMinistryAndActions(Game game) {
+        Map<MinistryEnum, Set<ActionType>> authorizedMinistryAndActions = new HashMap<>();
+        switch ( PhaseType.fromOrder(game.getCurrentPhase()) ) {
             case PURGE:
                 MinistryEnum ministry =
                     this.gameMinService.resolveAuthorizedMinistryForActionType(
-                        ActionType.PURGE_ATTEMPT, game).get(0);
-                authorizedMinistry.put(ActionType.PURGE_ATTEMPT, ministry);
-                return authorizedMinistry;
+                        ActionType.PURGE_ATTEMPT, game
+                    ).get(0);
+                Set<ActionType> actions = new HashSet<>();
+                actions.add(ActionType.PURGE_ATTEMPT);
+                authorizedMinistryAndActions.put( ministry, actions );
+                return authorizedMinistryAndActions;
             default:
                 return null;
         }

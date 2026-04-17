@@ -94,8 +94,8 @@ public class GameMapper {
                 PhaseType.fromOrder(entity.getCurrentPhase())
             )
         );
-        dto.setAuthorizedMinistry(
-            this.actionService.getAuthorizedMinistry(entity)
+        dto.setAuthorizedMinistryAndActions(
+            this.actionService.getAuthorizedMinistryAndActions(entity)
         );
 
         if (entity.getTrial() != null) {

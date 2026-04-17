@@ -42,7 +42,7 @@ public class GameResponseDTO {
     private ActionInstanceDTO awaitingAction;
     private List<ActionInstanceDTO> announcedActions;
     private Set<ActionType> possibleActionsByPhase = new HashSet<>();
-    private Map<ActionType, MinistryEnum> authorizedMinistry = new HashMap<>();
+    private Map<MinistryEnum, Set<ActionType>> authorizedMinistryAndActions = new HashMap<>();
 
     private TrialResponseDTO trial;
 
