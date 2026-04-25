@@ -368,6 +368,10 @@ public class ActionService {
 
         // If reach here, proceed with cancel
         action.setStatus(ActionStatus.CANCELLED);
+        if (game.getCurrentAwaitingAction().equals(action)) {
+            game.setCurrentAwaitingAction(null);
+            game.setBlockingStatus(ActionBlockingStatus.NONE);
+        }
         this.repoAction.save(action);
         this.repoGame.save(game);
 

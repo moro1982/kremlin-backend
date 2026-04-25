@@ -17,17 +17,19 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Version;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 import tprog04.kremlin.aux_classes.ActionBlockingStatus;
 import tprog04.kremlin.aux_classes.GameStatus;
 import tprog04.kremlin.aux_classes.PhaseExecutionStatus;
 
-@Data
+@Entity
+@Getter
+@Setter
 @ToString(exclude = {"players", "readyPlayers", "gamePoliticos"})
 @EqualsAndHashCode(exclude = {"players", "readyPlayers", "gamePoliticos"})
-@Entity
 public class Game {
 
     @Id

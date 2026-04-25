@@ -184,6 +184,17 @@ public class ValidationService {
                 break;
             case EXIT_HOSPITAL:
                 break;
+            case PURGE_ATTEMPT:
+                playerControlsRelevantPolitico = 
+                    this.controlService.playerControlsPolitico(
+                        player, action.getActingGamePolitico()
+                    );
+                if (!playerControlsRelevantPolitico) {
+                    throw new IllegalStateException(
+                        "Player must control the acting Politico."
+                    );
+                }
+                break;
             default:
                 break;
         }

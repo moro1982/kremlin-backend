@@ -9,15 +9,17 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import tprog04.kremlin.aux_classes.ActionStatus;
 import tprog04.kremlin.aux_classes.ActionType;
 import tprog04.kremlin.aux_classes.TrialVoteValue;
 
-@Data
-@EqualsAndHashCode(exclude = {"game", "actor"})
 @Entity
+@Getter
+@Setter
+@EqualsAndHashCode(exclude = {"game", "actor"})
 public class ActionInstance {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

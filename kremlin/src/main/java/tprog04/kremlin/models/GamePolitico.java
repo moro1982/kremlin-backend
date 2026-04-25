@@ -24,7 +24,7 @@ import tprog04.kremlin.aux_classes.GamePoliticoStatus;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(exclude = {"gameMinistry"})
-@EqualsAndHashCode(exclude = {"gameMinistry"})
+@EqualsAndHashCode(exclude = {"gameMinistry", "game"})
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class GamePolitico {
     @Id
