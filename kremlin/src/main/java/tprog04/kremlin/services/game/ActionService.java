@@ -1174,14 +1174,23 @@ public class ActionService {
     // Get authorized minister by ActionType
     public Map<MinistryEnum, Set<ActionType>> getAuthorizedMinistryAndActions(Game game) {
         Map<MinistryEnum, Set<ActionType>> authorizedMinistryAndActions = new HashMap<>();
+        MinistryEnum ministry;
+        Set<ActionType> actions = new HashSet<>();
         switch ( PhaseType.fromOrder(game.getCurrentPhase()) ) {
             case PURGE:
-                MinistryEnum ministry =
-                    this.gameMinService.resolveAuthorizedMinistryForActionType(
-                        ActionType.PURGE_ATTEMPT, game
-                    ).get(0);
-                Set<ActionType> actions = new HashSet<>();
+                ministry = this.gameMinService.resolveAuthorizedMinistryForActionType(
+                                ActionType.PURGE_ATTEMPT, game
+                           ).get(0);
+                actions = new HashSet<>();
                 actions.add(ActionType.PURGE_ATTEMPT);
+                authorizedMinistryAndActions.put( ministry, actions );
+                return authorizedMinistryAndActions;
+            case SPY_INVESTIGATION:
+                ministry = this.gameMinService.resolveAuthorizedMinistryForActionType(
+                                ActionType.BEGIN_INVESTIGATION, game
+                           ).get(0);
+                actions = new HashSet<>();
+                actions.addAll(this.getPossibleActionsByPhase(PhaseType.SPY_INVESTIGATION));
                 authorizedMinistryAndActions.put( ministry, actions );
                 return authorizedMinistryAndActions;
             default:

@@ -444,7 +444,8 @@ public class ActionAuthorizationService {
         MinistryEnum targetMinistryName = targetGamePolitico.getGameMinistry()
                                                             .getMinistry().getName();
         if (targetMinistryName.equals(actingMinistryName) || 
-            targetMinistryName.equals(MinistryEnum.PEOPLE)
+            targetMinistryName.equals(MinistryEnum.PEOPLE) ||
+            targetMinistryName.equals(MinistryEnum.CANDIDATE)
         ) {
             throw new IllegalStateException("Acting Minister can't investigate him/herself or the People.\n");
         }
@@ -452,9 +453,8 @@ public class ActionAuthorizationService {
         if (targetGamePolitico.getStatus().equals(GamePoliticoStatus.IN_EXILE) ||
             targetGamePolitico.getStatus().equals(GamePoliticoStatus.IN_SIBERIA) ||
             targetGamePolitico.getStatus().equals(GamePoliticoStatus.INACTIVE)
-        )
-        {
-            throw new IllegalStateException("Politicos on Exile, in Siberia or Inactive can't be purged.\n");
+        ) {
+            throw new IllegalStateException("Politicos on Exile, in Siberia or Inactive can't be investigated.\n");
         }
 
         // Validate if target Politico hasn't been investigated this turn
