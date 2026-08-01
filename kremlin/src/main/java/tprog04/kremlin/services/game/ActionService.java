@@ -328,9 +328,15 @@ public class ActionService {
                 return this.actionMapper.toDTO(savedAction);
             default:
                 // Don't execute action yet (pendant action until confirm or cancel).
+                savedGame = this.repoGame.save(game);
                 message = "Player " + savedAction.getActor().getName() + 
                          " announces " + savedAction.getType().toString() +
                          " action.\n";
+                this.notificationService.notifyAllPlayers(
+                    savedGame,
+                    SseEventType.ACTION_ANNOUNCED,
+                    message
+                );
                 break;
         }
 

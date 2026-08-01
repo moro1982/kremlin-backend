@@ -456,7 +456,6 @@ public class ActionAuthorizationService {
         ) {
             throw new IllegalStateException("Politicos on Exile, in Siberia or Inactive can't be investigated.\n");
         }
-
         // Validate if target Politico hasn't been investigated this turn
         boolean alreadyInvestigatedThisTurn = 
             this.repoAction.existsByGameAndTypeAndTargetGamePoliticoAndTurn(
@@ -470,13 +469,18 @@ public class ActionAuthorizationService {
                 "Target Politico has already been investgated this turn.\n"
             );
         }
-
         // Validate if target Politico is currently immune to investigations 
         // due to a trial absolution in this turn
         if (targetGamePolitico.getImmuneToInvestigationsUntilTurn() != null) {
             throw new IllegalStateException(
                 "Target Politico has been recently absolved on a Trial.\n" + 
                 "You may not investigate him/her until next turn.\n"
+            );
+        }
+        // Validate if target Politico has already 3 open investigations (max)
+        if (targetGamePolitico.getInvestigationCount() >= 3) {
+            throw new IllegalStateException(
+                "Target Politico has already 3 open investigations.\n"
             );
         }
     }
