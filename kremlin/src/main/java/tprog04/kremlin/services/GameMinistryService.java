@@ -281,6 +281,11 @@ public class GameMinistryService {
                 return allowedMinistryEnum;
             case CAST_TRIAL_VOTE:
                 return ALLOWED_VOTING_MINISTRIES;
+            case CONDEMNATION:
+                MinistryEnum condemnationMinistry = 
+                    this.loopPossibleMinistries(game, SPY_INVESTIGATION_MINISTRIES);
+                allowedMinistryEnum.add(condemnationMinistry);
+                return allowedMinistryEnum;
             default:
                 return null;
         }
