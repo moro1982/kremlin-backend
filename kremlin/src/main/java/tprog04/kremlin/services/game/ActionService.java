@@ -1022,10 +1022,11 @@ public class ActionService {
         ActionInstance awaitingAction = game.getCurrentAwaitingAction();
         GamePolitico actingMinister = awaitingAction.getActingGamePolitico();
         GamePolitico negatorMinister = negateAction.getActingGamePolitico();
-        int currentAge = actingMinister.getCurrentAge();
-
+        int currentAge = negatorMinister.getCurrentAge();
+        
         // Age negator minister +5 and save
         negatorMinister.setCurrentAge(currentAge + 5);
+        System.out.println("Negator's current age: " + negatorMinister.getCurrentAge());
         this.gamePolService.saveGamePolitico(negatorMinister);
 
         // Cancel Condemnation
